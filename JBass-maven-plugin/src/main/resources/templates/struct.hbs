@@ -1,0 +1,18 @@
+package {{packageName}};
+
+import com.github.jbass.BassAudioEngine;
+import com.github.jbass.callback.*;
+import jnr.ffi.Struct;
+
+public class {{struct.name}} extends Struct {
+{{#each struct.properties}}
+    /**
+     * {{{struct.documentation}}}
+     */
+    public {{{structmember this}}};
+{{/each}}
+
+    public {{struct.name}}() {
+        super(jnr.ffi.Runtime.getRuntime(BassAudioEngine.getDelegate()));
+    }
+}

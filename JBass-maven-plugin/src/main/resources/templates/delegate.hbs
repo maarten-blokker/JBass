@@ -1,0 +1,16 @@
+package {{packageName}};
+
+import java.nio.ByteBuffer;
+import com.github.jbass.struct.*;
+import com.github.jbass.callback.*;
+
+public interface BassDelegate {
+{{#each functions}}
+    /** 
+     * {{#each parameters}}
+     * @param {{name}} {{{documentation}}}{{/each}}{{#unless return.void}}
+     * @return {{return.documentation}}{{/unless}} 
+     */
+    public {{javatype result}} {{name}}({{#each parameters}}{{javatype this}} {{name}}{{#unless @last}}, {{/unless}}{{/each}});
+{{/each}}
+}

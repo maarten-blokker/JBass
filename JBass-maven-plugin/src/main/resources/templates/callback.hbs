@@ -1,0 +1,17 @@
+package {{packageName}};
+
+import java.nio.ByteBuffer;
+import jnr.ffi.annotations.Delegate;
+
+public interface {{callback.name}} {
+
+    /** 
+     * {{#each callback.parameters}}
+     * @param {{name}} {{{documentation}}}{{/each}}
+     *
+     * @return {{callback.return.documentation}}
+     */
+    @Delegate
+    public {{javatype callback.result}} on{{callback.name}}({{#each callback.parameters}}{{{javatype this}}} {{name}}{{#unless @last}}, {{/unless}}{{/each}});
+
+}
