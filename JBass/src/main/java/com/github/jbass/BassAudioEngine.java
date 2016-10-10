@@ -1,24 +1,26 @@
 package com.github.jbass;
 
+import com.github.jbass.struct.BASS_DEVICEINFO;
+import java.io.IOException;
+import jnr.ffi.LibraryLoader;
+
 /**
  *
  * @author Maarten
  */
 public class BassAudioEngine {
 
-    private static BassDelegate delegate;
+    private static BassDelegate DELEGATE;
 
-    public static void initialize() {
-//        BassDelegate a;
-        
+    public static void initialize() throws IOException {
+        DELEGATE = LibraryLoader.create(BassDelegate.class)
+                .failImmediately()
+                .search(BassLibraries.getLibraryPath().getAbsolutePath())
+                .load("bass");
     }
 
-    public static void close() {
-
-    }
-    
     public static BassDelegate getDelegate() {
-        return delegate;
+        return DELEGATE;
     }
 
 }
